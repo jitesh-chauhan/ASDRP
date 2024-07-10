@@ -19,8 +19,8 @@ def fetchEmail(request):
 
     def emailData():
         imap_server = "outlook.office365.com"
-        username = "jiteshchauhan1234@outlook.com"  # your email
-        password = "Jitesh@123456"
+        username = ""  # your email
+        password = ""
         port = 993
 
         mail = imaplib.IMAP4_SSL(imap_server, port)
@@ -190,7 +190,7 @@ def fetchEmail(request):
     def SendFile(username):
         # username = 'jiteshchauhan1234@outlook.com'
         receiver_email = [
-            "jiteshchauhan281@gmail.com",
+            "example@gmail.com",
             "receiver@example.com",
         ]  # email id of the receiver
         subject = "Processed Data summary"
@@ -216,7 +216,7 @@ def fetchEmail(request):
                 "smtp-mail.outlook.com", 587
             ) as smtp:  # replace with your smtp-server address and port
                 smtp.starttls()
-                smtp.login(username, "Jitesh@123456")  # replace with your password
+                smtp.login(username, "")  # replace with your password
                 smtp.send_message(msg)
             print("Email sent successfully!")
         except Exception as e:
