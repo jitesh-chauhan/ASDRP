@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: asdrp-service
+  labels:
+    app: asdrp
+spec:
+  type: LoadBalancer # Use LoadBalancer if running on cloud
+  selector:
+    app: asdrp     # Should match your deployment's pod label
+  ports:
+    - port: 8000           # Port service exposes internally
+      targetPort: 8000     # Port your container listens on
+      nodePort: 30080      # Optional fixed NodePort (range: 30000-32767)

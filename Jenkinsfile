@@ -42,12 +42,12 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    // Replace image in deployment.yaml
-                    sh "sed -i 's|image:.*|image: ${IMAGE_NAME}:${IMAGE_TAG}|' deployment.yaml"
+                    // Replace image in asdrp-deployment.yaml
+                    sh "sed -i 's|image:.*|image: ${IMAGE_NAME}:${IMAGE_TAG}|' asdrp-deployment.yaml"
 
                     // Apply k8s manifests
-                    sh "kubectl apply -f deployment.yaml"
-                    sh "kubectl apply -f service.yaml"
+                    sh "kubectl apply -f asdrp-deployment.yaml"
+                    sh "kubectl apply -f asdrp-service.yaml"
                 }
             }
         }
