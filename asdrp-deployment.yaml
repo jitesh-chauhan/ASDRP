@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asdrp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asdrp
+  template:
+    metadata:
+      labels:
+        app: asdrp
+    spec:
+      containers:
+      - name: asdrp
+        image: asdrp:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8000  # Adjust if your app uses a different port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: asdrp-service
+spec:
+  type: NodePort  # You can change to LoadBalancer if needed
+  selector:
+    app: asdrp
+  ports:
+  - port: 8000       # Port for accessing the service
+    targetPort: 8000 # Port on the container
+    nodePort: 30080  # External port (30000–32767 range)
