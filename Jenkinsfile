@@ -54,7 +54,14 @@ triggers {
             }
         }
     }
-
+	stage('Expose Service Port') {
+            steps {
+                script {
+                    // Run port-forward in background using nohup
+                    sh 'nohup kubectl port-forward service/asdrp-service 8000:8000 > port-forward.log 2>&1 &'
+                }
+            }
+        }
     post {
         always {
             sh "docker logout"
